@@ -1,0 +1,1033 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+html {
+    height: 100%;
+    overflow: auto;
+}
+body {
+    display: flex;
+    flex-direction: column;
+	line-height: 1;
+    font-family: 'PT Sans', sans-serif;
+    overflow: auto;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+h1, h2, h3, h4 {
+    display: grid;
+    place-content: center;
+}
+
+/*Variables*/
+$pswhite: #FFFFFF;
+$psblack: #000000;
+$psblue: #007AEA;
+$bordercolor: #E5E5E5;
+$skycolor: #007fff;
+$psgray: #6E7781;
+
+/*Bootstrap's*/
+.row {
+    margin: 0;
+    padding: 0;
+    *{
+        margin: 0;
+        padding: 0;
+    }
+}
+
+/*Buttons*/
+.btnType1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $psblue;
+    color: $pswhite;
+    width: 100px;
+    padding: 0.5rem;
+    border: 1px solid $psblue;
+    border-radius: 0.5rem;
+    &:enabled:hover {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: $pswhite;
+        color: $psblack;
+        width: 100px;
+        padding: 0.5rem;
+        border: 1px solid $psblack;
+        border-radius: 0.5rem;
+    }
+    &:disabled {
+        text-decoration: line-through;
+        cursor: not-allowed;
+    }
+}
+.btnType2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $pswhite;
+    color: $psblack;
+    width: 100px;
+    padding: 0.5rem;
+    border: 1px solid $psblack;
+    border-radius: 0.5rem;
+    &:enabled:hover {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: $psblue;
+        color: $pswhite;
+        width: 100px;
+        padding: 0.5rem;
+        border: 1px solid $psblue;
+        border-radius: 0.5rem;
+    }
+}
+.closeButton {
+    background: transparent;
+    border: none;
+    img {
+        width: 34px;
+        height: 34px;
+    }
+}
+
+/*Links*/
+a {
+    color: $psblack;
+    text-decoration: none;
+    &:hover {
+        color: $psblue;
+    }
+}
+
+/*Sections Container*/
+.fullscreenScroll {
+    height: 100%;
+    width: 100%;
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+}
+
+/*Header*/
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+    border-bottom: 2px solid $bordercolor;
+    position: fixed;
+    width: 100%;
+    background: $pswhite;
+    z-index: 99;
+    .logoAndName {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 40%;
+        position: relative;
+        img {
+            width: 34px;
+            height: 34px;
+        }
+    }
+}
+
+/*Navigation*/
+.desktopNav {
+    display: flex;
+    flex: 1;
+    ul {
+        display: flex;
+        justify-content: space-evenly;
+        width: 100%;
+        li {
+            display: grid;
+            place-items: center;
+        }
+    }
+}
+@media screen and (max-width: 900px) {
+    .desktopNav {
+        display: none;
+    }
+    .logoAndName {
+        flex: 1;
+        justify-content: space-between !important;
+    }
+}
+.mobileNav {
+    display: flex;
+    position: absolute;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+    padding: 1rem;
+    background: $pswhite;
+    ul {
+        display: grid;
+        grid-template-rows: auto auto auto auto auto auto auto;
+        row-gap: 1rem;
+        height: min-content;
+        width: 100%;
+        li {
+            display: flex;
+            justify-content: center;
+        }
+    }
+}
+@media screen and (max-width: 900px) {
+    .navButton {
+        display: block !important;
+        background: transparent;
+        border: none;
+        padding: 0;
+        img {
+            width: 34px;
+            height: 34px;
+        }
+    }
+}
+.navButton {
+    display: none;
+}
+
+/*Home*/
+.home {
+    .homeWelcome {
+        display: flex;
+        position: relative;
+        .welcomeText {
+            display: grid;
+            place-items: center;
+            width: 100%;
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, 0);
+            p {
+                font-size: 2rem;
+                @media screen and (max-width: 900px) {
+                    font-size: 1.2rem;
+                }
+            }
+        }
+        .container {
+            justify-content: center;
+            position: relative;
+        }
+        img {
+            height: 100%;
+            width: 100%;
+        }
+    }
+    .homePricing {
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .titleDescription {
+            display: flex;
+            justify-content: center;
+            @media screen and (max-width: 900px) {
+                padding: 0 1rem;
+            }
+            .descriptionContainer {
+                padding: 1rem;
+                margin: 1rem 0;
+                background: $bordercolor;
+                border-radius: 0.5rem;           
+                p {
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
+
+/*Appointments*/
+.appointments {
+    .appointmentsPsychologists {
+        @media screen and (max-width: 900px) {
+            height: 100vh;
+        }
+        .title {
+            margin-bottom: 1rem;
+        }
+    }
+}
+
+/*About Us*/
+.aboutUs {
+    .aboutUsIntro {
+        padding-top: 68px;
+        @media screen and (max-width: 900px) {
+            padding-top: 70px;
+        }
+    }
+    .aboutUsIntro, .aboutUsText, .aboutUsThisIs, .aboutUsEnding {
+        display: flex;
+        flex-direction: column;
+        img {
+            width: 100%;
+        }
+    }
+    .aboutUsText {
+        position: relative;
+        .desktopText {
+            display: flex;
+            @media screen and (max-width: 900px) {
+                display: none;
+            }
+        }
+        .mobileText {
+            display: none;
+            @media screen and (max-width: 900px) {
+                display: flex;
+            }
+        }
+        p {
+            position: absolute;
+            max-width: 20%;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            @media screen and (max-width: 900px) {
+                max-width: 50%;
+                width: max-content;
+            }
+            @media screen and (max-width: 380px) {  
+                font-size: 0.8rem;
+            }
+        }
+    }
+    .aboutUsContainer {
+        display: flex;
+        flex-direction: column;
+        background: linear-gradient($skycolor, rgba(0, 128, 255, 0.1));
+    }
+}
+
+/*Login*/
+.loginRegister {
+    display: grid;
+    place-items: center;
+    scroll-snap-type: none;
+    overflow: hidden;
+    .loginRegisterContainer {
+        display: grid;
+        place-items: center;
+        height: auto;
+        min-height: 70%;
+        max-width: 35%;
+        padding: 1rem;
+        overflow-y: auto;
+        border-radius: 0.5rem;
+        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+        @media screen and (max-width: 1194px) {
+            max-width: 50%;
+        }
+        @media screen and (max-width: 836px) {
+            max-width: 75%;
+        }
+        @media screen and (max-width: 558px) {
+            max-width: 100%;
+            height: 100%;
+        }
+        @media screen and (max-height: 650px) {
+            height: 100%;
+        }
+        .title {
+            margin: 0;
+        }
+        .loginRegisterContent {
+            width: 100%;
+            div {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 1rem;
+            }
+            input {
+                width: 100%;
+                border: 1px solid $psblack;
+                border-radius: 0.5rem;
+                padding: 0.5rem;
+                box-sizing: border-box;
+            }
+            button {
+                width: 100%;
+                box-sizing: border-box;
+            }
+        }
+        .loginRegisterFooter {
+            width: 100%;
+            div {
+                &:first-of-type {
+                    text-align: left;
+                }
+                &:last-of-type {
+                    text-align: right;
+                    a.important {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*Reservation*/
+.reservation {
+    .psychologistPrewiev {
+        @media screen and (max-width: 900px) {
+            height: auto;  
+        }
+        .container {
+            @media screen and (max-width: 900px) {
+                padding: calc(1rem + 70px) 1rem 1rem 1rem;    
+            }
+        }
+    }
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        @media screen and (max-width: 900px) {
+            align-items: flex-start;
+            justify-content: flex-start;
+        }
+    }
+    .reservationContainer {
+        display: flex;
+        flex-direction: column;
+        min-width: 100%;
+        min-height: 75%;
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 0.5rem;
+        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+        @media screen and (max-width: 900px) {
+            min-width: 100%;
+            min-height: 100%;
+        }
+        .reservationHeader {
+            display: grid;
+            place-items: center;
+            border-bottom: 1px solid $bordercolor;
+            padding: 1rem;
+            @media screen and (max-width: 660px) {
+                padding: 0.5rem;   
+            }
+            .title {
+                margin: 0;
+            }
+            img {
+                border-radius: 50%;
+                margin-bottom: 1rem;
+                @media screen and (max-width: 900px) {
+                    width: 50px;
+                }
+            }
+        }
+        .reservationContent {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            padding: 1rem;
+            @media screen and (max-height: 660px) {
+                padding: 0.5rem;
+                .calendarsContainer {
+                    margin-bottom: 0.5rem !important;
+                }
+            }
+            .title {
+                margin-bottom: 1rem;
+                margin-top: 0;
+                @media screen and (max-height: 660px) {
+                    margin-bottom: 0.5rem;
+                }
+            }
+            .psychologistsComments {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: flex-end;
+                flex: 1;
+                @media screen and (max-width: 900px) {
+                    flex: 0;
+                    margin-top: 1rem;
+                }
+                @media screen and (max-height: 660px) {
+                    margin-top: 0.5rem;
+                }
+                .commentsContainer {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    overflow-x: auto;
+                    max-width: 100%;
+                    .commentItem {
+                        padding: 1rem;
+                        border: 1px solid $psblue;
+                        border-radius: 0.5rem;
+                        margin-right: 1rem;
+                        min-width: 30%;
+                        box-sizing: border-box;
+                        @media screen and (max-width: 900px) {
+                            min-width: 100%;
+                        }
+                        .title {
+                            margin: 0 0 1rem 0;
+                            h4 {
+                                place-content: start;
+                            }
+                        }
+                    }
+                }
+            }
+            .calendarsContainer {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                overflow-x: auto;
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+            .timesContainer {
+                flex: 1;
+                justify-content: flex-end;
+                display: flex;
+                flex-direction: column;
+                ul {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    overflow-x: auto;
+                    li {
+                        min-width: 10%;
+                        &:not(:last-of-type) {
+                            margin-right: 1rem;
+                        }
+                        @media screen and (max-width: 900px) {
+                            min-width: 40%;
+                        }
+                        button {
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .selectingDateTime {
+        @media screen and (max-width: 900px) {
+            height: auto;
+        }
+    }
+}
+
+/*Payment*/
+.payment {
+    .reservationContainer {
+        @media screen and (max-width: 900px) {
+            min-height: calc(100% - 70px)
+        }
+    }
+    .reservationContent {
+        .row {
+            flex: 1;
+            position: relative;
+            @media screen and (max-width: 900px) {
+                flex-direction: column;
+            }
+            .col-6 {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                @media screen and (max-width: 900px) {
+                    width: 100%;
+                    &:first-of-type {
+                        margin-bottom: 1rem;
+                    }
+                }
+            }
+            .confirmButton {
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translate(-50%, 0);
+            }
+        }
+    }
+    .paymentInfos {
+        display: grid;
+        place-items: center;
+        grid-template-rows: auto auto auto auto;
+        row-gap: 1rem;
+        min-width: 50%;
+        min-height: 50%;
+        input {
+            border: 1px solid $psblack;
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+            width: 100%;
+        }
+        span {
+            display: flex;
+            width: 100%;
+            input:first-of-type {
+                margin-right: 1rem;
+            }
+        }
+    }
+    .cardOverview {
+        display: grid;
+        row-gap: 1rem;
+        min-width: 50%;
+        min-height: 50%;
+        padding: 5rem 1rem 1rem 1rem;
+        border-radius: 0.5rem;
+        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+        @media screen and (max-width: 900px) {
+            width: 100%;
+        }
+        @media screen and (max-height: 590px) {
+            padding-top: 3rem;
+        }
+        p {
+            display: flex;
+            align-items: center;
+        }
+        span {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            span {
+                width: auto;
+                .slash {
+                    margin: 0 0.5rem;
+                }
+            }
+        }
+        .cardName {
+            word-wrap: break-word;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+        }
+    }
+}
+
+/*Intro*/
+.intro {
+    .p1 {
+        display: flex;
+        @media screen and (max-width: 900px) {
+            flex-direction: column-reverse;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+        .col-6 {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            &:nth-of-type(1) {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+            }
+            @media screen and (max-width: 900px) {
+                justify-content: center;
+                width: 100%;
+            }
+            p {
+                text-align: left;
+            }
+        }
+    }
+    .p2 {
+        display: flex;
+        @media screen and (max-width: 900px) {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+        .col-6 {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            &:nth-of-type(2) {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+            }
+            @media screen and (max-width: 900px) {
+                justify-content: center;
+                width: 100%;
+            }
+            p {
+                text-align: right;
+                @media screen and (max-width: 900px) {
+                    text-align: left;
+                }
+            }
+        }
+    }
+    .introContent {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        justify-content: space-evenly;
+        @media screen and (max-width: 900px) {
+            justify-content: space-around;
+        }
+        img {
+            @media screen and (max-width: 900px) {
+                width: 100px;
+                margin-bottom: 1rem;
+            }
+        }
+    }
+}
+
+/*Sections*/
+section {
+    width: 100%;
+    box-sizing: border-box;
+    .container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+}
+.fullscreen {
+    height: 100vh;
+}
+
+/*Title*/
+.title {
+    width: 100%;
+    margin: 1rem 0 0 0;
+    h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/*Psychologist*/
+.psychologists {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+    overflow-x: auto;
+    @media screen and (max-width: 900px) {
+        overflow-x: auto;
+        padding: 0 1rem 1rem 1rem;
+    }
+}
+
+.psychologistsMore {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    padding: 1rem 0;
+}
+
+.psychologist {
+    display: flex;
+    flex-direction: column;
+    min-width: 20vw;
+    max-width: 20vw;
+    background: $pswhite;
+    border-radius: 0.5rem;
+    &:not(:last-of-type) {
+            margin-right: 1rem;
+    }
+    @media screen and (max-width: 900px) {
+        min-width: 100%;
+        height: calc(100% - 2rem);
+    }
+        .psychologistHeader {
+            display: grid;
+            place-items: center;
+            border: 1px solid $bordercolor;
+            border-top-left-radius: 0.5rem;
+            border-top-right-radius: 0.5rem;
+            padding: 1rem;
+            img {
+                border-radius: 50%;
+                margin-bottom: 1rem;
+                @media screen and (max-width: 900px) {
+                    width: 50px;
+                }
+            }
+        }
+        .psychologistContent {
+            flex: 1;
+            padding: 1rem;
+            border: 1px solid $bordercolor;
+            border-top: 0;
+            border-bottom: 0;
+            p {
+                word-wrap: break-word;
+                @media screen and (max-width: 900px) {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 4;
+                    -webkit-box-orient: vertical;
+                }
+            }
+        }
+        .psychologistPrice {          
+            border: 1px solid $bordercolor;
+            border-bottom-left-radius: 0.5rem;
+            border-bottom-right-radius: 0.5rem;
+            padding: 1rem;
+            .priceContainer {
+                background: $pswhite;
+                color: $psblack;
+                border-radius: 0.5rem;
+                padding: 1rem;
+            }
+            button {
+                width: 100%;
+                &:hover {
+                    width: 100%;
+                }
+            }
+        }
+}
+
+/*Commonly Asked*/
+.helpCommonlyAsked {
+    .qna {
+        flex: 1;
+        margin-top: 1rem;
+        @media screen and (max-width: 900px) {
+            padding: 0 1rem;
+        }
+        .messageSend {
+            display: grid;
+            place-items: end;
+            width: 100%;
+            margin-bottom: 0.5rem;
+            .buble {
+                max-width: 95%;
+                background: $psblue;
+                color: $pswhite;
+                padding: 1rem;
+                border-radius: 0.5rem 0.5rem 0 0.5rem;
+            }
+        }
+        .messageReceive {
+            display: grid;
+            place-items: start;
+            width: 100%;
+            margin-bottom: 0.5rem;
+            .buble {
+                max-width: 95%;
+                background: $bordercolor;
+                color: $psblack;
+                padding: 1rem;
+                border-radius: 0.5rem 0.5rem 0.5rem 0;
+            }
+        }
+    }
+}
+
+/*Slide For More*/
+.slideForMore {
+    display: grid;
+    place-items: center;
+    position: absolute;
+    bottom: 2%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    @media screen and (max-width: 900px) {
+        display: none;
+    }
+    img {
+        width: auto !important;
+        height: auto !important;
+    }
+}
+
+.homeWelcome .slideForMore {
+    @media screen and (max-width: 900px) {
+        display: grid;
+    }
+}
+
+/*Calendar*/
+.calendar {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    max-height: 300px;
+    margin-right: 2rem;
+    @media screen and (max-width: 900px) {
+        max-width: 100%;
+        min-width: 100%;
+    }
+    .calendarMonth {
+        .title {
+            margin-top: 1rem !important;
+        }
+    }
+    .calendarDayNames {
+        ul {
+            display: grid;
+            grid-template-columns: auto auto auto auto auto auto auto;
+            li {
+                display: grid;
+                place-content: center;
+                padding: 0.5rem;
+                color: $psgray;
+            }
+        }
+    }
+    .calendarDays {
+        ul {
+            display: grid;
+            grid-template-columns: auto auto auto auto auto auto auto;
+            li {
+                display: grid;
+                place-content: center;
+                padding: 0.5rem;
+                button {
+                    background: transparent;
+                    border: none;
+                }
+                button:enabled:hover{
+                    color: $psblue;
+                }
+            }
+        }
+        .unavailable {
+            text-decoration: line-through;
+            color: $psgray;
+        }
+    }
+}
+
+/*Footer*/
+.footer {
+    border-top: 1px solid $bordercolor;
+    .container {
+        justify-content: flex-end;
+    }
+}
+
+footer {
+    background: $pswhite;
+    padding: 1rem 0;
+    width: 100%;
+    @media screen and (max-width: 900px) {
+        height: 50%;
+    }
+    .logoContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        @media screen and (max-width: 900px) {
+            flex: 1;
+            width: 100%;
+            margin-bottom: 1rem;
+            img {
+                height: 100%;
+                width: auto !important;
+            }
+        }
+        img {
+            width: 30%;
+        }
+    }
+    .row {
+        @media screen and (max-width: 900px) {
+            flex-direction: column;
+            height: 100%;
+        }
+        .footerList {
+            flex: 1;
+            @media screen and (max-width: 900px) {
+                flex-direction: row;
+            }
+            .col-4 {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                @media screen and (max-width: 900px) {
+                    &:first-of-type {
+                        align-items: flex-start;
+                    }
+                    &:last-of-type {
+                        align-items: flex-end;
+                    }
+                }
+                .socialList {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                }
+                h2 {
+                    width: min-content;
+                    font-size: 1.5rem;
+                    text-align: left;
+                    border-bottom: 2px solid $psblue;
+                    margin-bottom: 1rem;
+                }
+                ul {
+                    line-height: 1.5rem;
+                    width: min-content;
+                }
+            }
+        }
+    }
+}

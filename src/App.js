@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from "react-router-dom";
+import ScrollToTop from "./components/ScrollToTop";
+import Home from "./components/Home";
+import Appointments from "./components/Appointments";
+import Help from "./components/Help";
+import AboutUs from "./components/AboutUs";
+import Login from "./components/Login";
+import Register from "./components/Register";
+import Reservation from "./components/Reservation";
+import "./css/style.css";
 
-function App() {
+const App = () => {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <ScrollToTop />
+      <Switch>
+        <Route  path="/" component={() => (<Redirect to="/Home" />)} exact />
+        <Route path="/Home" component={Home} exact />
+        <Route path="/Appointments" component={Appointments} exact />
+        <Route path="/Help" component={Help} exact />
+        <Route path="/AboutUs" component={AboutUs} exact />
+        <Route path="/Login" component={Login} exact />
+        <Route path="/Register" component={Register} exact />
+        <Route path="/Reservation" component={Reservation} exact />
+      </Switch>
+    </Router>
   );
 }
 
