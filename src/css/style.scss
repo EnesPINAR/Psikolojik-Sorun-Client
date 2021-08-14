@@ -52,6 +52,9 @@ h1, h2, h3, h4 {
     display: grid;
     place-content: center;
 }
+:focus {
+    outline: none;
+}
 
 /*Variables*/
 $pswhite: #FFFFFF;
@@ -72,26 +75,24 @@ $psgray: #6E7781;
 }
 
 /*Buttons*/
-.btnType1 {
+button {
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 1px solid;
+    border-radius: 0.5rem;
+    transition: 200ms all;
+}
+.btnType1 {
     background: $psblue;
     color: $pswhite;
     width: 100px;
+    border-color: $psblue;
     padding: 0.5rem;
-    border: 1px solid $psblue;
-    border-radius: 0.5rem;
     &:enabled:hover {
-        display: flex;
-        align-items: center;
-        justify-content: center;
         background: $pswhite;
         color: $psblack;
-        width: 100px;
-        padding: 0.5rem;
-        border: 1px solid $psblack;
-        border-radius: 0.5rem;
+        border-color: $psblack;
     }
     &:disabled {
         text-decoration: line-through;
@@ -99,25 +100,15 @@ $psgray: #6E7781;
     }
 }
 .btnType2 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background: $pswhite;
     color: $psblack;
     width: 100px;
+    border-color: $psblack;
     padding: 0.5rem;
-    border: 1px solid $psblack;
-    border-radius: 0.5rem;
     &:enabled:hover {
-        display: flex;
-        align-items: center;
-        justify-content: center;
         background: $psblue;
         color: $pswhite;
-        width: 100px;
-        padding: 0.5rem;
-        border: 1px solid $psblue;
-        border-radius: 0.5rem;
+        border-color: $psblue;
     }
 }
 .closeButton {
@@ -129,10 +120,22 @@ $psgray: #6E7781;
     }
 }
 
+/*Inputs*/
+input {
+    border: 1px solid $psblack;
+    
+}
+
+input:focus {
+    border-color: $psblue !important;
+    transition: 200ms all;
+}
+
 /*Links*/
 a {
     color: $psblack;
     text-decoration: none;
+    transition: 200ms all;
     &:hover {
         color: $psblue;
     }
@@ -160,8 +163,21 @@ header {
         display: flex;
         justify-content: space-evenly;
         align-items: center;
-        width: 40%;
         position: relative;
+        padding: 0 1rem;
+        a {
+            display: flex;
+            img {
+                margin-right: 2rem;
+                &:hover {
+                    transform: rotate(-360deg);
+                    transition: 400ms all;
+                }
+                @media screen and (max-width: 900px) {
+                    margin: 0;
+                }
+            }
+        }
         img {
             width: 34px;
             height: 34px;
@@ -172,14 +188,16 @@ header {
 /*Navigation*/
 .desktopNav {
     display: flex;
-    flex: 1;
+    padding: 0 1rem;
     ul {
         display: flex;
-        justify-content: space-evenly;
         width: 100%;
         li {
             display: grid;
             place-items: center;
+            &:not(:last-of-type) {
+                margin-right: 2rem;
+            }
         }
     }
 }
@@ -194,12 +212,15 @@ header {
 }
 .mobileNav {
     display: flex;
-    position: absolute;
-    right: 0;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     height: 100%;
     width: 100%;
     z-index: 100;
     padding: 1rem;
+    overflow: hidden;
     background: $pswhite;
     ul {
         display: grid;
@@ -769,6 +790,9 @@ section {
         overflow-x: auto;
         padding: 0 1rem 1rem 1rem;
     }
+    .psychologistsList {
+        display: flex;
+    }
 }
 
 .psychologistsMore {
@@ -802,6 +826,8 @@ section {
             img {
                 border-radius: 50%;
                 margin-bottom: 1rem;
+                width: 75px;
+                height: 75px;
                 @media screen and (max-width: 900px) {
                     width: 50px;
                 }
@@ -901,6 +927,19 @@ section {
 .homeWelcome .slideForMore {
     @media screen and (max-width: 900px) {
         display: grid;
+    }
+}
+
+.privacy, .terms {
+    .privacyAgreementContainer, .termsContainer {
+        .title {
+            margin-bottom: 1rem;
+        }
+        .privacyAgreement, .termsOfUsage {
+            p {
+                
+            }
+        }
     }
 }
 
@@ -1029,5 +1068,13 @@ footer {
                 }
             }
         }
+    }
+}
+
+.loading {
+    display: grid;
+    place-items: center;
+    h3 {
+        font-size: 2rem;
     }
 }

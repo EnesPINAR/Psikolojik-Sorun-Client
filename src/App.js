@@ -13,6 +13,9 @@ import AboutUs from "./components/AboutUs";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Reservation from "./components/Reservation";
+import ForgotPassword from "./components/ForgotPassword";
+import Privacy from "./components/Privacy";
+import Terms from "./components/Terms";
 import "./css/style.css";
 
 const App = () => {
@@ -29,6 +32,9 @@ const App = () => {
         <Route path="/Login" component={Login} exact />
         <Route path="/Register" component={Register} exact />
         <Route path="/Reservation" component={Reservation} exact />
+        <Route path="/ForgotPassword" component={ForgotPassword} exact />
+        <Route path="/Privacy" component={Privacy} exact />
+        <Route path="/Terms" component={Terms} exact />
       </Switch>
     </Router>
   );

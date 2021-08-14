@@ -541,7 +541,7 @@ const Reservation = () => {
                                                 <span>
                                                     <p>{cardEndingMonth}</p>
                                                     {
-                                                        (cardEndingMonth && cardEndingYear) == undefined || (cardEndingMonth && cardEndingYear) == "" ? null : <p className="slash">/</p>
+                                                        (cardEndingMonth && cardEndingYear) === undefined || (cardEndingMonth && cardEndingYear) === "" ? null : <p className="slash">/</p>
                                                     }
                                                     <p>{cardEndingYear}</p>
                                                 </span>

@@ -23,11 +23,13 @@ const Login = () => {
                 </div>
                 <div className="loginRegisterFooter row">
                     <div className="col-6">
-                        <a href="#">Forgot password ?</a>
+                        <Link to="/ForgotPassword">
+                            Forgot Password?
+                        </Link>
                     </div>
                     <div className="col-6">
                         <Link to="/Register">
-                            <a>Register for Psikolojik Sorun</a>
+                            Register for Psikolojik Sorun
                         </Link>
                     </div>
                 </div>

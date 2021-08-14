@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
-import Psychologist from "./Psychologist";
+import PsychologistsList from "./PsychologistsList";
 
 const Home = () => {
 
@@ -55,15 +55,13 @@ const Home = () => {
                         <div className="titleDescription row">
                             <div className="col-12">
                                 <div className="descriptionContainer">
-                                    <p>In Psikolojik Sorun, our each psychologist sets his own price.
+                                    <p>In Psikolojik Sorun, our each psychologist have same price.
                                         Here are some of our psychologists.</p>
                                 </div>
                             </div>
                         </div>
                         <div className="psychologists">
-                            <Psychologist></Psychologist>
-                            <Psychologist></Psychologist>
-                            <Psychologist></Psychologist>
+                            <PsychologistsList />
                         </div>
                     </div>
                 </section>

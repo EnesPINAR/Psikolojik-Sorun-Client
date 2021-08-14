@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
-import Psychologist from "./Psychologist";
+import PsychologistsList from "./PsychologistsList";
 
 const Appointments = () => {
 
@@ -45,14 +45,7 @@ const Appointments = () => {
                             </div>
                         </div>
                         <div className="psychologists">
-                            <Psychologist></Psychologist>
-                            <Psychologist></Psychologist>
-                            <Psychologist></Psychologist>
-                            <Psychologist></Psychologist>
-                            <Psychologist></Psychologist>
-                            <Psychologist></Psychologist>
-                            <Psychologist></Psychologist>
-                            <Psychologist></Psychologist>
+                            <PsychologistsList />
                         </div>
                     </div>
                 </section>
